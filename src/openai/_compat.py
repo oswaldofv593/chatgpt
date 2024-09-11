@@ -136,7 +136,11 @@ def model_dump(
     exclude: IncEx = None,
     exclude_unset: bool = False,
     exclude_defaults: bool = False,
+    exclude_headers: bool = False,
 ) -> dict[str, Any]:
+    exclude = {}
+    if exclude_headers:
+        exclude={"headers"} 
     if PYDANTIC_V2:
         return model.model_dump(
             exclude=exclude,
